@@ -6,10 +6,10 @@ class AccountController {
     }
 
     async create(req, res) {
-        const { id, userId, firstname, lastname, middlename, vehicleType, validty } = req.body || {}
+        const { id, userId, firstname, lastname, middlename, vehicleType, validity } = req.body || {}
 
         try {
-            const response = await this.user.create(id, userId, firstname, lastname, middlename, vehicleType, validty)
+            const response = await this.user.create(id, userId, firstname, lastname, middlename, vehicleType, validity)
 
             res.json({
                 success: true,

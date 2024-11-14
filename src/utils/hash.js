@@ -1,7 +1,7 @@
-const crypto = require('crypto')
+const crypto = require('crypto-js')
 
-module.exports = function encryptId(id, userId) {
-    return createHmac('sha256', userId)
-    .update(id)
-    .digest('hex')
+function encryptId(id, userId) {
+    return crypto.HmacSHA256(id, userId).toString(crypto.enc.Hex)
 }
+
+module.exports = { encryptId }

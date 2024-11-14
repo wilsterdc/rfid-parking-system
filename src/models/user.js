@@ -1,16 +1,23 @@
-const dbConnection = require('../core/database')
-const encryptId = require('../utils/hash')
+const { connect } = require('../core/database')
+const { encryptId } = require('../utils/hash')
 
 class User {
     constructor() {
-        this.db = dbConnection
+        this.db = connect
     }
 
-    async create(id, userId, firstname, lastname, middlename, vehicleType, validty) {
+    async create(id, userId, firstname, lastname, middlename, vehicleType, validity) {
         try {
-            const results = await dbConnection.execute(
-                'INSERT INTO users(id, userId, firstname, lastname, middlename, vehicleType, validty) VALUES (?, ?, ?, ?, ?, ?, ?)',
-                [encryptId(id, userId), userId, firstname, lastname, middlename, vehicleType, validty]
+            console.log(encryptId(id, userId), firstname, lastname, middlename, vehicleType, validity)
+            const connection = await connect()
+
+            if(!connection) {
+                throw new Error('Failed to establish a connection.')
+            }
+
+            const [results] = await connection.execute(
+                'INSERT INTO users(id, userId, firstname, lastname, middlename, vehicleType, validity) VALUES (?, ?, ?, ?, ?, ?, ?)',
+                [encryptId(id, userId), userId, firstname, lastname, middlename, vehicleType, validity]
             )
 
             return results
@@ -20,5 +27,4 @@ class User {
         }
     }
 }
-
 module.exports = User
