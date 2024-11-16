@@ -11,6 +11,7 @@ const parser = serialport.pipe(new ReadlineParser())
 function receiveSerialport() {
     parser.on('data', (data) => {
         console.log('Received data: ', data)
+        // console.log(typeof(data))
     })
 
     // serialport.write('main screen turn on', function(error) {

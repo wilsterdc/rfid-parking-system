@@ -62,3 +62,5 @@ return (
         </form>
     </div>
 )
+
+export default createUser
