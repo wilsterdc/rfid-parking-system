@@ -1,30 +1,14 @@
-const { SerialPort, ReadlineParser } = require('serialport')
+const { serial } = require('../core/serialport')
+const { arduinoRequests } = require('./requestRoutes')
 
-const serialport = new SerialPort({
-    path: 'COM3',
-    baudRate: 9600,
-    autoOpen: true
-})
 
-const parser = serialport.pipe(new ReadlineParser())
-
-function receiveSerialport() {
-    parser.on('data', (data) => {
-        console.log('Received data: ', data)
-        // console.log(typeof(data))
-    })
-
-    // serialport.write('main screen turn on', function(error) {
-    //     if (error) {
-    //         return console.log('Error on write: ', error.message)
-    //     }
-
-    //     console.log('Message written')
-    // })
-
-    serialport.on('error', function(error) {
-        console.log('Error: ', error.message)
+function serialport() {
+    serial().on('data', (data) => {
+        
+        const dataCollection = []
+        dataCollection.push(data.toString().trim())
+        console.log(dataCollection)
     })
 }
 
-module.exports = { receiveSerialport }
+module.exports = { serialport }
