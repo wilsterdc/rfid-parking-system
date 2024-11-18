@@ -8,7 +8,7 @@ class User {
 
     async create(id, userId, firstname, lastname, middlename, vehicleType, validity) {
         try {
-            console.log(encryptId(id, userId), firstname, lastname, middlename, vehicleType, validity)
+            // console.log(encryptId(id, userId), firstname, lastname, middlename, vehicleType, validity)
             const connection = await connect()
 
             if(!connection) {
@@ -23,6 +23,25 @@ class User {
             return results
         } catch(error) {
             console.error('[Create user]', error)
+            throw error
+        }
+    }
+
+    async parkIn(uid, userId) {
+        try {
+            const connection = await connect()
+            
+            if (!connection) {
+                throw new Error('Failed to establish a connection.')
+            }
+            
+            const result = connection.execute(
+                `SELECT id, vehicleType FROM users WHERE userId = '${userId}'`
+            )
+
+            return result
+        } catch (error) {
+            console.error('[Park in]', error)
             throw error
         }
     }

@@ -6,6 +6,7 @@ class AccountController {
     }
 
     async create(req, res) {
+        // Add arduino module for passing the id from arduino
         const { id, userId, firstname, lastname, middlename, vehicleType, validity } = req.body || {}
 
         try {
@@ -25,6 +26,30 @@ class AccountController {
                 message: error.toString()
             })
 
+            res.end()
+        }
+    }
+    
+    async parkIn(req, res) {
+        const { uid, userId } = req.query || {}
+        
+        try {
+            const response = await this.user.parkIn(uid, userId)
+            
+            res.json({
+                success: true,
+                data: {
+                    "id": response[0][0].id
+                }
+            })
+
+            res.end()
+        } catch (error) {
+            res.json({
+                success: false,
+                message: error.toString()
+            })
+        
             res.end()
         }
     }

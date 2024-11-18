@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RFID</title>
+</head>
+<body>
+    <div>
+        <h1>
+            Register RFID
+        </h1>
+        <form id='registrationForm'>
+            <div>
+                <label>User ID:</label>
+                <input id='uid' type='text' name='userId' required />
+            </div>
+            <div>
+                <label>Firstname: </label>
+                <input id='firstname' type='text' name='firstname' required />
+            </div>
+            <div>
+                <label>Lastname: </label>
+                <input id='lastname' type='text' name='lastname' required />
+            </div>
+            <div>
+                <label>Middlename: </label>
+                <input id='middlename' type='text' name='middlename'/>
+            </div>
+            <div>
+                <label>Vehicle Type: </label>
+                <input id='vehicle-type' type='text' name='vehicleType' required />
+            </div>
+            <div>
+                <label>Validity: </label>
+                <input tid='validity' Type='text' name='validity'  required />
+            </div>
+            <button type='submit'>Submit</button>
+        </form>
+    </div>
+</body>
+<script src="index.js" type="module"></script>
+</html>
