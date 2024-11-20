@@ -1,13 +1,22 @@
 const { serial } = require('../core/serialport')
-const { arduinoRequests } = require('./requestRoutes')
+const ArduinoRoutes = require('./requestRoutes')
 
+const routes = new ArduinoRoutes
 
 function serialport() {
-    serial().on('data', (data) => {
+
+    serial().on('data', async (data) => {
+        try {
+            data = data.toString().trim()
+            // console.log(data)
+            routes.userId(data)
+
+        } catch (error) {
+            console.error('[READING RFID]', error)
+            id = null
+            userId = null
+        }
         
-        const dataCollection = []
-        dataCollection.push(data.toString().trim())
-        console.log(dataCollection)
     })
 }
 

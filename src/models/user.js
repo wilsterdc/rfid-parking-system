@@ -27,7 +27,7 @@ class User {
         }
     }
 
-    async parkIn(uid, userId) {
+    async parking(uid, userId) {
         try {
             const connection = await connect()
             
@@ -35,13 +35,18 @@ class User {
                 throw new Error('Failed to establish a connection.')
             }
             
-            const result = connection.execute(
+            const authenticate = await connection.execute(
                 `SELECT id, vehicleType FROM users WHERE userId = '${userId}'`
             )
 
+            if (authenticate) {
+                console.log('User does not exist.')
+            }
+
+            console.log(authenticate)
             return result
         } catch (error) {
-            console.error('[Park in]', error)
+            console.error('[Parking]', error)
             throw error
         }
     }

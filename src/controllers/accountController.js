@@ -30,11 +30,11 @@ class AccountController {
         }
     }
     
-    async parkIn(req, res) {
+    async parking(req, res) {
         const { uid, userId } = req.query || {}
         
         try {
-            const response = await this.user.parkIn(uid, userId)
+            const response = await this.user.parking(uid, userId)
             
             res.json({
                 success: true,
