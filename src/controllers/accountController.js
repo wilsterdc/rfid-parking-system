@@ -35,13 +35,26 @@ class AccountController {
         
         try {
             const response = await this.user.parking(uid, userId)
-            
-            res.json({
+            console.log(response.insertId)
+
+            if (response.insertId >= 1) {
+                res.json({
                 success: true,
                 data: {
-                    "id": response[0][0].id
-                }
-            })
+                    "id": response?.insertId,
+                    "message": "Park-in"
+                    }
+                })
+            } else {
+                res.json({
+                success: true,
+                data: {
+                    "message": "Park-out"
+                    }
+                })
+            }
+            
+            
 
             res.end()
         } catch (error) {

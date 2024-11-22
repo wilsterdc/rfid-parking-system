@@ -39,12 +39,43 @@ class User {
                 `SELECT id, vehicleType FROM users WHERE userId = '${userId}'`
             )
 
-            if (authenticate) {
+            // console.log(authenticate[0][0].vehicleType)
+            const vehicleType = authenticate[0][0].vehicleType
+            // console.log(vehicleType.toLowerCase())
+
+            if (authenticate[0][0] === undefined) {
                 console.log('User does not exist.')
+                throw 'User does not exist.'
             }
 
-            console.log(authenticate)
-            return result
+            const userParkedIn = await connection.execute(
+                `SELECT COUNT(*) FROM logs WHERE userId = '${userId}'`
+            )
+
+            const value = Object.values(userParkedIn[0][0])
+            // console.log(value[0])
+
+            if (value[0] <= 0) {
+                const [parkingSlot] = await connection.execute(
+                    `UPDATE parkingSlots SET occupied = occupied + 1 WHERE vehicleType = '${vehicleType.toLowerCase()}'`
+                )
+
+                const [result] = await connection.execute(
+                    `INSERT INTO logs(userId) VALUES(?)`,
+                    [userId]
+                )
+
+                return result
+            } else {
+                const [result] = await connection.execute(
+                    `UPDATE logs SET exitTime = CURRENT_TIMESTAMP WHERE userId = '${userId}'`
+                )
+
+                return result
+            }
+            
+            // console.log(result.insertId)
+            // return authenticate
         } catch (error) {
             console.error('[Parking]', error)
             throw error

@@ -7,7 +7,15 @@ async function parking(userId) {
         }
     })
 
-    console.log('[RFID]', response.data.success)
+    if (!response.data.success) {
+        console.log(response.data.message)
+    }
+
+    // if (response.data.success) {
+    //     console.log(response.data.data)
+    // }
+
+    console.log('[RFID]', response.data)
 }
 
 module.exports = { parking }
