@@ -49,28 +49,32 @@ class User {
             }
 
             const userParkedIn = await connection.execute(
-                `SELECT COUNT(*) FROM logs WHERE userId = '${userId}'`
+                `SELECT COUNT(*) FROM logs WHERE userId = '${userId}' AND entryDate = CURRENT_DATE()`
             )
 
             const value = Object.values(userParkedIn[0][0])
             // console.log(value[0])
 
             if (value[0] <= 0) {
-                const [parkingSlot] = await connection.execute(
-                    `UPDATE parkingSlots SET occupied = occupied + 1 WHERE vehicleType = '${vehicleType.toLowerCase()}'`
-                )
-
                 const [result] = await connection.execute(
                     `INSERT INTO logs(userId) VALUES(?)`,
                     [userId]
                 )
 
+                await connection.execute(
+                    `UPDATE parkingSlots SET occupied = occupied + 1 WHERE vehicleType = '${vehicleType.toLowerCase()}'`
+                )
+
                 return result
             } else {
                 const [result] = await connection.execute(
-                    `UPDATE logs SET exitTime = CURRENT_TIMESTAMP WHERE userId = '${userId}'`
+                    `UPDATE logs SET exitTime = CURRENT_TIME() WHERE userId = '${userId}'`
                 )
-
+               
+                await connection.execute(
+                    `UPDATE parkingSlots SET occupied = occupied - 1 WHERE vehicleType = '${vehicleType.toLowerCase()}'`
+                )
+                
                 return result
             }
             

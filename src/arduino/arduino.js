@@ -8,7 +8,7 @@ async function parking(userId) {
     })
 
     if (!response.data.success) {
-        console.log(response.data.message)
+        console.error(response.data.message)
     }
 
     // if (response.data.success) {

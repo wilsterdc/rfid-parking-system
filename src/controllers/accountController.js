@@ -35,7 +35,7 @@ class AccountController {
         
         try {
             const response = await this.user.parking(uid, userId)
-            console.log(response.insertId)
+            // console.log(response.insertId)
 
             if (response.insertId >= 1) {
                 res.json({
