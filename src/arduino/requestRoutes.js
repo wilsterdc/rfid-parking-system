@@ -2,13 +2,13 @@ const { parking } = require('./arduino')
 
 class ArduinoRoutes {
     
-    method(req) {
-        console.log('Method:', req)
-    }
+    // method(req) {
+    //     console.log('Method:', req)
+    // }
 
-    id(id) {
-        console.log('ID:', id)
-    }
+    // id(id) {
+    //     console.log('ID:', id)
+    // }
 
     userId(userId) {
         parking(userId)

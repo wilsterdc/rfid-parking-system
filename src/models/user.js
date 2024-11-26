@@ -1,5 +1,6 @@
 const { connect } = require('../core/database')
 const { encryptId } = require('../utils/hash')
+const { serial } = require('../core/serialport')
 
 class User {
     constructor() {
@@ -14,6 +15,15 @@ class User {
             if(!connection) {
                 throw new Error('Failed to establish a connection.')
             }
+
+            // fix scanner
+            serial().write(userId, (error) => {
+                if (error) {
+                    console.error(error)
+                }
+
+                console.log('User id written successfully!')
+            })
 
             const [results] = await connection.execute(
                 'INSERT INTO users(id, userId, firstname, lastname, middlename, vehicleType, validity) VALUES (?, ?, ?, ?, ?, ?, ?)',
@@ -36,20 +46,22 @@ class User {
             }
             
             const authenticate = await connection.execute(
-                `SELECT id, vehicleType FROM users WHERE userId = '${userId}'`
+                `SELECT id, validity, vehicleType FROM users WHERE userId = '${userId}'`
             )
 
             // console.log(authenticate[0][0].vehicleType)
-            const vehicleType = authenticate[0][0].vehicleType
+            let vehicleType = ''
             // console.log(vehicleType.toLowerCase())
 
             if (authenticate[0][0] === undefined) {
-                console.log('User does not exist.')
+                // console.log('User does not exist.')
                 throw 'User does not exist.'
+            } else {
+                vehicleType = authenticate[0][0].vehicleType
             }
 
             const userParkedIn = await connection.execute(
-                `SELECT COUNT(*) FROM logs WHERE userId = '${userId}' AND entryDate = CURRENT_DATE()`
+                `SELECT COUNT(*) FROM logs WHERE userId = '${userId}' AND entryDate = CURRENT_DATE() AND exitTime IS NULL`
             )
 
             const value = Object.values(userParkedIn[0][0])
