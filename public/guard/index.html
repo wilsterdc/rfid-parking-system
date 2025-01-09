@@ -1,0 +1,74 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blue: '#3498db',
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="flex flex-col min-h-full">
+  <div class="flex-grow">
+    <!-- Header Section -->
+    <div class="basis-1/4 bg-blue p-10 flex flex-col justify-center">
+      <h1 class="text-center text-white text-6xl">Dashboard</h1>
+      <p id="date-time" class="mt-4 text-center text-lg text-white"></p>
+    </div>
+    <!-- Main Content Section -->
+    <div class="flex-grow flex flex-row items-center justify-center text-white m-10 space-x-10">
+      <div id="motorcycles" class="bg-blue rounded-lg p-10 w-60">
+        <h1 class="text-2xl pb-2">Motorcycles</h1>
+        <p>Occupied: <span id="motorcycles-occupied">12</span></p>
+        <p>Available: <span id="motorcycles-available">15</span></p>
+        <p>Total Spaces: <span id="motorcycles-total">27</span></p>
+      </div>          
+
+      <div id="three-wheels" class="bg-blue rounded-lg p-10 w-60">
+        <h1 class="text-2xl pb-2">3 Wheels</h1>
+        <p>Occupied: <span id="motorcycles-occupied">18</span></p>
+        <p>Available: <span id="motorcycles-available">15</span></p>
+        <p>Total Spaces: <span id="motorcycles-total">33</span></p>
+      </div>
+      
+      <div id="four-wheels" class="bg-blue rounded-lg p-10 w-60">
+        <h1 class="text-2xl pb-2">4 Wheels</h1>
+        <p>Occupied: <span id="motorcycles-occupied">5</span></p>
+        <p>Available: <span id="motorcycles-available">15</span></p>
+        <p>Total Spaces: <span id="motorcycles-total">20</span></p>
+      </div>
+    </div>
+  </div>
+
+  <div class="flex flex-col bg-blue justify-center items-center my-5 mx-10 p-5 rounded-lg">
+    <span class="text-lg text-white font-semibold">Waiting for the RFID card be scan...</span>
+    <span class="text-lg text-white font-semibold">[Vehicle] park in...</span>
+  </div>
+
+  <!-- Footer Section -->
+  <div class="flex items-center justify-center w-full bg-blue text-white p-10 my-10">
+  </div>
+
+  <script>
+    function updateDateTime() {
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString(); 
+      const formattedTime = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }); 
+
+      document.getElementById("date-time").textContent = `${formattedDate} - ${formattedTime}`;
+    }
+
+    updateDateTime();
+    setInterval(updateDateTime, 1000);
+  </script>
+</body>
+</html>
