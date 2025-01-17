@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blue: '#3498db',
+            dark: '#426282',
+            lightgray: '#d9d9d9',
+            darklight: '#5F88B0',
+            black: '#444444',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <title>Parking Management</title>
+</head>
+<body class="flex flex-row h-screen font-inter">
+  <!-- Sidebar -->
+  <div class="flex flex-col basis-1/4 bg-blue text-white h-screen">
+    <h1 class="text-3xl font-bold p-5">Parking Management</h1>
+    <nav class="flex-grow">
+      <a href="/public/admin/list.html" 
+         class="bg-dark p-2 mx-4 my-2 rounded-br-3xl rounded-tr-3xl hover:bg-darklight block">
+        List of Registered Vehicles
+      </a>
+      <a href="/public/admin/registration.html" 
+         class="p-2 mx-4 my-2 rounded-br-3xl rounded-tr-3xl hover:bg-darklight block">
+        Registration
+      </a>
+      <a href="/public/admin/logs.html" 
+         class="p-2 mx-4 my-2 rounded-br-3xl rounded-tr-3xl hover:bg-darklight block">
+        Parking Logs
+      </a>
+    </nav>
+    <a href="/public/admin/index.html">
+      <button class="w-28 bg-dark px-2 py-1 m-4 rounded-3xl hover:bg-darklight">
+        Logout
+      </button>
+    </a>
+  </div>
+  
+
+  <!-- Main Content -->
+  <div class="flex flex-col basis-3/4 bg-lightgray p-5">
+    <!-- Form Section -->
+    <div class="flex flex-col items-center justify-center h-full">
+      <h1 class="p-5 text-black text-center text-4xl font-bold">Renewal</h1>
+      <form action="/public/admin/list.html" class="space-y-5 p-5 rounded-lg">
+        <div class="flex flex-row space-x-20">
+        <!-- left corner -->
+        <div class="flex flex-col space-y-5 w-full">
+            <div>
+            <input
+                type="text"
+                id="nvehicle-owner"
+                name="nvehicle-owner"
+                placeholder="Wilster Dela Cruz"
+                readonly
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white cursor-not-allowed"
+            />
+            </div>
+            <div>
+                <input
+                    type="text"
+                    id="vehicle-type"
+                    name="vehicle-type"
+                    placeholder="Motorcycle"
+                    readonly
+                    class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white cursor-not-allowed"
+                />
+            </div>
+            <div>
+            <input
+                type="text"
+                id="plate-number"
+                name="plate-number"
+                placeholder="ABC-123"
+                readonly
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white cursor-not-allowed"
+            />
+            </div>
+            <div>
+            <input
+                type="text"
+                id="rfid-tag"
+                name="rfid-tag"
+                placeholder="ABC123"
+                readonly
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white cursor-not-allowed"
+            />
+            </div>
+            <div>
+            <input
+                type="text"
+                id="contact-no"
+                name="contact-no"
+                placeholder="09123456789"
+                readonly
+                class="w-full px-4 py-2 rounded-lg border border-gray-300 bg-white cursor-not-allowed"
+            />
+            </div>
+        </div>
+        
+        <!-- Right corner -->
+        <div class="flex flex-col space-y-5 w-full">
+            <div class="input-wrapper relative">
+            <input 
+                type="date" 
+                id="start-date" 
+                name="start-date"
+                placeholder="Start Date"
+                required 
+                class="custom-date-input p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500"
+            />
+            <img src="/public/img/calendar-icon.svg" alt="Calendar Icon" class="icon absolute right-3 top-1/2 transform -translate-y-1/2">
+            </div>
+            <div class="input-wrapper relative">
+            <input 
+                type="date" 
+                id="end-date" 
+                name="end-date"
+                placeholder="End Date"
+                required 
+                class="custom-date-input p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500"
+            />
+            <img src="/public/img/calendar-icon.svg" alt="Calendar Icon" class="icon absolute right-3 top-1/2 transform -translate-y-1/2">
+            </div>
+            <div class="flex flex-col bg-white rounded-lg p-6 text-gray-500">
+            <h1 class="">Hard Copy Requirements</h1>
+            <label class="inline-flex items-center py-1">
+                <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
+                <span class="ml-2">Vehicle Ownership</span>
+            </label>
+            <label class="inline-flex items-center pb-1">
+                <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
+                <span class="ml-2">Government/School ID</span>
+            </label>  
+            <label class="inline-flex items-center pb-1">
+                <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
+                <span class="ml-2">Drivers License</span>
+            </label>           
+            </div>
+        </div>
+        
+        </div>
+        
+        <div class="flex flex-row items-center justify-center space-x-10">
+          <button
+            type="submit"
+            class="w-1/4 bg-blue text-white py-2 px-6 rounded-lg hover:bg-darklight">
+            Submit
+          </button>
+          <button
+            type="reset"
+            class="w-1/4 bg-gray-200 text-black py-2 px-6 rounded-lg hover:bg-gray-300">
+            Clear
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+  
+  <script>
+    function toggleArrow(isOpen) {
+      const arrow = document.getElementById('dropdown-arrow');
+      if (isOpen) {
+        arrow.style.transform = 'translateY(-50%) rotate(180deg)';
+      } else {
+        arrow.style.transform = 'translateY(-50%) rotate(0deg)'; 
+      }
+    }
+    flatpickr("#start-date", {
+      dateFormat: "Y-m-d",
+    });
+    flatpickr("#end-date", {
+      dateFormat: "Y-m-d",
+    });
+  </script>
+</body>
+</html>

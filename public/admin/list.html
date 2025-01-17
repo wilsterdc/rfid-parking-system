@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            blue: '#3498db',
+            dark: '#426282',
+            darklight: '#5F88B0',
+          },
+          fontFamily: {
+            inter: ['Inter', 'sans-serif'],
+          },
+        },
+      },
+    };
+  </script>
+  <title>Parking Management</title>
+</head>
+<body class="flex flex-row h-screen font-inter">
+  <!-- Sidebar -->
+  <div class="flex flex-col basis-1/4 bg-blue text-white h-screen">
+    <h1 class="text-3xl font-bold p-5">Parking Management</h1>
+    <nav class="flex-grow">
+      <a href="/public/admin/list.html" 
+         class="bg-dark p-2 mx-4 my-2 rounded-br-3xl rounded-tr-3xl hover:bg-darklight block">
+        List of Registered Vehicles
+      </a>
+      <a href="/public/admin/registration.html" 
+         class="p-2 mx-4 my-2 rounded-br-3xl rounded-tr-3xl hover:bg-darklight block">
+        Registration
+      </a>
+      <a href="/public/admin/logs.html" 
+         class="p-2 mx-4 my-2 rounded-br-3xl rounded-tr-3xl hover:bg-darklight block">
+        Parking Logs
+      </a>
+    </nav>
+    <a href="/public/admin/index.html">
+      <button class="w-28 bg-dark px-2 py-1 m-4 rounded-3xl hover:bg-darklight">
+        Logout
+      </button>
+    </a>
+  </div>
+  
+
+  <!-- Main Content -->
+  <div class="flex flex-col basis-3/4 bg-white p-5">
+    <!-- Header Section -->
+    <div class="flex justify-between items-center bg-blue p-4 rounded">
+      <h1 class="text-white text-4xl font-semibold">Registered Vehicles</h1>
+      <input
+        type="text"
+        placeholder="Search vehicles"
+        class="p-2 h-10 rounded-lg border border-gray-300 focus:outline-none focus:ring-2 focus:ring-blue"
+        aria-label="Search Vehicles"
+      />
+    </div>
+
+    <!-- Content Section -->
+    <div class="mt-4">
+      <!-- Table -->
+      <table class="w-full">
+        <thead>
+          <tr class="bg-blue text-white">
+            <th class="p-3">RFID Tag</th>
+            <th class="p-3">Name of Vehicle Owner</th>
+            <th class="p-3">Vehicle Type</th>
+            <th class="p-3">Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="text-center border-b border-gray-300 hover:bg-gray-100">
+            <td class="p-3">RFID1234</td>
+            <td class="p-3">Dela Cruz, Wilster</td>
+            <td class="p-3">Motorcycle</td>
+            <td class="p-3 space-x-2">
+              <a href="/public/admin/details.html">
+                <button class="bg-green-500 text-white px-4 py-1 rounded hover:bg-green-600">Details</button></a>
+              <button class="bg-red-500 text-white px-4 py-1 rounded hover:bg-red-600">Remove</button>
+              <a href="/public/admin/renewal.html">
+                <button class="bg-blue text-white px-4 py-1 rounded hover:bg-blue-600">Renew</button></a>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</body>
+</html>
