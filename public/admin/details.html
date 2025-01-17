@@ -51,70 +51,89 @@
       </button>
     </a>
   </div>
-  
 
   <!-- Main Content -->
-  <div class="flex flex-col basis-3/4 bg-lightgray p-5">
-    <!-- Form Section -->
-    <div class="flex flex-col items-center justify-center h-full">
-      <h1 class="p-5 text-black text-center text-4xl font-bold">Details</h1>
-      <div class="space-y-5 p-5 rounded-lg">
-        <div class="flex flex-row space-x-10">
-          <!-- left corner -->
-          <div class="flex flex-col space-y-5 w-full">
-            <div class="relative p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500">
-                <span id="nvehicle-owner">Wilster Dela Cruz</span>
-            </div>
-            <div class="relative p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500">
-                <span id="vehicle-type">Motorcycle</span>
-            </div>
-            <div class="relative p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500">
-                <span id="plate-number">ABC-123</span>
-            </div>
-            <div class="relative p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500">
-                <span id="rfid-tag">456123</span>
-            </div> 
-            <div class="relative p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500">
-                <span id="contact-no">09123456789</span>
-            </div>             
-          </div>
-          <!-- right corner -->
-          <div class="flex flex-col space-y-5 w-full">
-            <div class="w-full relative p-5 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500">
-              <span id="start-date">01/05/2025</span>
-              <img src="/public/img/calendar-icon.svg" alt="Calendar Icon" class="icon absolute right-3 top-1/2 transform -translate-y-1/2">
-            </div>
-            <div class="w-full relative p-5 py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500">
-                <span id="start-date">01/05/2026</span>
-                <img src="/public/img/calendar-icon.svg" alt="Calendar Icon" class="icon absolute right-3 top-1/2 transform -translate-y-1/2">
-              </div>
-              <div class="flex flex-col bg-white rounded-lg p-6 text-black">
-                <h1 class="pb-2">Hard Copy Requirements</h1>
-                <div class="flex flex-col space-y-2">
-                  <label class="inline-flex items-center">
-                    <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
-                    <span class="ml-2 whitespace-nowrap">Vehicle Ownership</span>
-                  </label>
-                  <label class="inline-flex items-center">
-                    <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
-                    <span class="ml-2 whitespace-nowrap">Government/School ID</span>
-                  </label>
-                  <label class="inline-flex items-center">
-                    <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
-                    <span class="ml-2 whitespace-nowrap">Driver's License</span>
-                  </label>
-                </div>
-              </div>              
-          </div>
+  <div class="flex flex-col items-center justify-center min-h-screen w-full overflow-hidden py-6">
+    <div class="w-full max-w-4xl p-6 rounded-lg border border-gray-300">
+      <h1 class="text-black text-center text-4xl font-bold mb-10">Details</h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+        <!-- Left Column -->
+        <div>
+          <table class="w-full border-collapse border border-gray-300 mb-6">
+            <tbody>
+              <tr class="border-b border-gray-300">
+                <td class="p-3 font-semibold">Vehicle Owner</td>
+                <td class="p-3 text-gray-700" id="nvehicle-owner">Wilster Dela Cruz</td>
+              </tr>
+              <tr class="border-b border-gray-300">
+                <td class="p-3 font-semibold">Vehicle Type</td>
+                <td class="p-3 text-gray-700" id="vehicle-type">Motorcycle</td>
+              </tr>
+              <tr class="border-b border-gray-300">
+                <td class="p-3 font-semibold">Plate Number</td>
+                <td class="p-3 text-gray-700" id="plate-number">ABC-123</td>
+              </tr>
+              <tr class="border-b border-gray-300">
+                <td class="p-3 font-semibold">RFID Tag</td>
+                <td class="p-3 text-gray-700" id="rfid-tag">456123</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-        
-        <div class="flex items-center justify-center space-x-10">
-          <button class="w-1/4 bg-gray-200 text-black py-2 px-6 rounded-lg hover:bg-gray-300">
-            <a href="/public/admin/list.html">Close</a>
-          </button>
+
+        <!-- Right Column -->
+        <div>
+          <table class="w-full border-collapse border border-gray-300 mb-6">
+            <tbody>
+              <tr class="border-b border-gray-300">
+                <td class="p-3 font-semibold">Contact Number</td>
+                <td class="p-3 text-gray-700" id="contact-no">09123456789</td>
+              </tr>
+              <tr class="border-b border-gray-300">
+                <td class="p-3 font-semibold">Start Date</td>
+                <td class="p-3 text-gray-700 flex items-center">
+                  <span id="start-date">01/05/2025</span>
+                </td>
+              </tr>
+              <tr class="border-b border-gray-300">
+                <td class="p-3 font-semibold">End Date</td>
+                <td class="p-3 text-gray-700 flex items-center">
+                  <span id="end-date">01/05/2026</span>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
-    </div>
+      </div>
+
+      <div class="flex flex-col bg-white rounded-lg p-6 text-black mb-6">
+        <h1 class="pb-2 font-semibold">Hard Copy Requirements</h1>
+        <div class="flex flex-col space-y-2">
+          <label class="inline-flex items-center">
+            <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
+            <span class="ml-2 whitespace-nowrap">Vehicle Ownership</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
+            <span class="ml-2 whitespace-nowrap">Government/School ID</span>
+          </label>
+          <label class="inline-flex items-center">
+            <input type="checkbox" class="form-checkbox h-4 w-4" checked disabled>
+            <span class="ml-2 whitespace-nowrap">Driver's License</span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Close Button -->
+      <div class="flex items-center justify-center ">
+        <a href="/public/admin/list.html" class="bg-gray-200 hover:bg-gray-300 rounded-lg ">
+          <button class="text-black py-2 px-6">
+          Close
+        </button></a>
+      </div>
     </div>
   </div>
+
+
 </body>
 </html>

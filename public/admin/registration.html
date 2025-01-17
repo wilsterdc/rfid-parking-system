@@ -14,7 +14,6 @@
           colors: {
             blue: '#3498db',
             dark: '#426282',
-            lightgray: '#d9d9d9',
             darklight: '#5F88B0',
             black: '#444444',
           },
@@ -42,7 +41,7 @@
       </a>
       <a href="/public/admin/logs.html" 
          class="p-2 mx-4 my-2 rounded-br-3xl rounded-tr-3xl hover:bg-darklight block">
-        Parking Logs
+        System Logs
       </a>
     </nav>
     <a href="/public/admin/index.html">
@@ -54,7 +53,7 @@
   
 
   <!-- Main Content -->
-  <div class="flex flex-col basis-3/4 bg-lightgray p-5">
+  <div class="flex flex-col basis-3/4 p-5">
     <!-- Form Section -->
     <div class="flex flex-col items-center justify-center h-full">
       <h1 class="p-5 text-black text-center text-4xl font-bold">Registration</h1>
@@ -62,45 +61,44 @@
         <div class="flex flex-row space-x-20">
           <!-- left corner -->
           <div class="flex flex-col space-y-5 w-full">
-            <div>
+            <div class="relative">
               <input
                 type="text"
                 id="nvehicle-owner"
                 name="nvehicle-owner"
                 placeholder="Name of Vehicle Owner"
                 required
-                class="w-full px-4 py-2 rounded-lg border border-gray-300"
+                class="w-full px-4 py-2 rounded-lg border-none text-gray-500 bg-gray-200"
               />
             </div>
             <div class="relative">
               <select
                 id="vehicle-type"
                 name="vehicle-type"
-                class="w-full px-4 py-2 rounded-lg border border-gray-300 appearance-none bg-white text-gray-700"
+                class="w-full px-4 py-2 rounded-lg border-none appearance-none text-gray-500 bg-gray-200"
                 required
                 onfocus="toggleArrow(true)"
                 onblur="toggleArrow(false)">
-                <option value="" disabled selected>Select Vehicle Type</option>
-                <option value="motorcycle">Motorcycle</option>
-                <option value="three-wheels">3 wheels</option>
-                <option value="four-wheels">4 wheels</option>
+                <option value="" class="text-gray-400" disabled selected>Select Vehicle Type</option>
+                <option value="motorcycle" class="text-gray-400">Motorcycle</option>
+                <option value="three-wheels" class="text-gray-400">3 wheels</option>
+                <option value="four-wheels" class="text-gray-400">4 wheels</option>
               </select>
-              <svg
+              <img 
                 id="dropdown-arrow"
+                src="/public/img/dropdown.svg"
+                alt="Dropdown Arrow"
                 class="absolute right-3 top-1/2 transform -translate-y-1/2 w-6 h-6 pointer-events-none transition-transform duration-200"
-                xmlns="http://www.w3.org/2000/svg"
-                width="25" height="16" viewBox="0 0 25 16" fill="none">
-                <path opacity="0.8" d="M23.5323 2.07L13.6498 14.4525C12.7123 15.585 11.2673 15.585 10.3685 14.4525L0.486034 2.07C-0.451466 0.8975 0.0172845 0 1.46228 0H22.556C24.041 0 24.4698 0.89875 23.5323 2.07Z" fill="gray"/>
-              </svg>
+              />
             </div>
-            <div>
+            <div class="relative">
               <input
                 type="text"
                 id="plate-number"
                 name="plate-number"
                 placeholder="Vehicle Plate Number"
                 required
-                class="w-full px-4 py-2 rounded-lg border border-gray-300"
+                class="w-full px-4 py-2 rounded-lg border-none text-gray-500 bg-gray-200"
               />
             </div>
             <div>
@@ -110,7 +108,7 @@
                 name="rfid-tag"
                 placeholder="RFID Tag Number"
                 required
-                class="w-full px-4 py-2 rounded-lg border border-gray-300"
+                class="w-full px-4 py-2 rounded-lg border-none text-gray-500 bg-gray-200"
               />
             </div>
             <div>
@@ -120,7 +118,7 @@
                 name="contact-no"
                 placeholder="Contact Number"
                 required
-                class="w-full px-4 py-2 rounded-lg border border-gray-300"
+                class="w-full px-4 py-2 rounded-lg border-none text-gray-500 bg-gray-200"
               />
             </div>
           </div>
@@ -133,7 +131,7 @@
                 name="start-date"
                 placeholder="Start Date"
                 required 
-                class="custom-date-input p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500"
+                class="custom-date-input p-5 w-full py-2 rounded-lg border-none text-gray-500 bg-gray-200 placeholder-gray-400"
               />
               <img src="/public/img/calendar-icon.svg" alt="Calendar Icon" class="icon absolute right-3 top-1/2 transform -translate-y-1/2">
             </div>
@@ -144,22 +142,22 @@
                 name="end-date"
                 placeholder="End Date"
                 required 
-                class="custom-date-input p-5 w-full py-2 rounded-lg border border-gray-300 bg-white text-gray-700 placeholder-gray-500"
+                class="custom-date-input p-5 w-full py-2 rounded-lg border-none text-gray-500 bg-gray-200 placeholder-gray-400"
               />
               <img src="/public/img/calendar-icon.svg" alt="Calendar Icon" class="icon absolute right-3 top-1/2 transform -translate-y-1/2">
             </div>
-            <div class="flex flex-col bg-white rounded-lg p-6 text-gray-500">
+            <div class="flex flex-col rounded-lg p-6 bg-gray-200 text-gray-500">
               <h1 class="">Hard Copy Requirements</h1>
               <label class="inline-flex items-center py-1">
-                <input type="checkbox" class="form-checkbox h-4 w-4">
+                <input type="checkbox" class="form-checkbox h-4 w-4" required>
                 <span class="ml-2">Vehicle Ownership</span>
               </label>
               <label class="inline-flex items-center pb-1">
-                <input type="checkbox" class="form-checkbox h-4 w-4">
+                <input type="checkbox" class="form-checkbox h-4 w-4" required>
                 <span class="ml-2">Government/School ID</span>
               </label>  
               <label class="inline-flex items-center pb-1">
-                <input type="checkbox" class="form-checkbox h-4 w-4">
+                <input type="checkbox" class="form-checkbox h-4 w-4" required>
                 <span class="ml-2">Drivers License</span>
               </label>           
             </div>
@@ -169,12 +167,12 @@
         <div class="flex flex-row items-center justify-center space-x-10">
           <button
             type="submit"
-            class="w-1/4 bg-blue text-white py-2 px-6 rounded-lg hover:bg-darklight">
+            class="w-1/4 bg-darklight text-white py-2 px-6 rounded-lg hover:bg-blue">
             Submit
           </button>
           <button
             type="reset"
-            class="w-1/4 bg-gray-200 text-black py-2 px-6 rounded-lg hover:bg-gray-300">
+            class="w-1/4 text-black py-2 px-6 rounded-lg hover:bg-gray-400">
             Clear
           </button>
         </div>
@@ -183,20 +181,24 @@
   </div>
   
   <script>
-    function toggleArrow(isOpen) {
-      const arrow = document.getElementById('dropdown-arrow');
-      if (isOpen) {
-        arrow.style.transform = 'translateY(-50%) rotate(180deg)';
-      } else {
-        arrow.style.transform = 'translateY(-50%) rotate(0deg)'; 
+    document.addEventListener("DOMContentLoaded", 
+    function () {
+      const vehicleTypeSelect = document.getElementById("vehicle-type");
+      const dropdownArrow = document.getElementById("dropdown-arrow");
+  
+      function toggleArrow(isOpen) {
+        dropdownArrow.style.transform = isOpen
+          ? "translateY(-50%) rotate(180deg)"
+          : "translateY(-50%) rotate(0deg)";
       }
-    }
-    flatpickr("#start-date", {
-      dateFormat: "Y-m-d",
-    });
-    flatpickr("#end-date", {
-      dateFormat: "Y-m-d",
+  
+      vehicleTypeSelect.addEventListener("focus", () => toggleArrow(true));
+      vehicleTypeSelect.addEventListener("blur", () => toggleArrow(false));
+  
+      flatpickr("#start-date", { dateFormat: "Y-m-d" });
+      flatpickr("#end-date", { dateFormat: "Y-m-d" });
     });
   </script>
+  
 </body>
 </html>
